@@ -41,3 +41,36 @@ function handleError(error) {
     console.error("Error fetching products:", error);
 }
 
+//Task 4
+
+function displayProducts(products) {
+    const container = document.getElementById('product-container');
+
+    if (!container) {
+        console.error("Element with ID 'product-container' not found.");
+        return;
+    }
+
+    container.innerHTML = ''; 
+
+    products.slice(0, 5).forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.classList.add('product');
+
+        const name = document.createElement('h3');
+        name.textContent = product.name;
+
+        const price = document.createElement('p');
+        price.textContent = `$${product.price.toFixed(2)}`;
+
+        const image = document.createElement('img');
+        image.src = product.image;
+        image.alt = product.name;
+
+        productDiv.appendChild(name);
+        productDiv.appendChild(price);
+        productDiv.appendChild(image);
+
+        container.appendChild(productDiv);
+    });
+}
